@@ -156,7 +156,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
 
   return (
     <motion.div
-      className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] md:w-[850px] max-w-[95vw] bg-off-white brutalist-border brutalist-shadow md:aspect-[1.6/1] flex flex-col md:flex-row overflow-hidden max-h-[90vh]"
+      className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] md:w-[850px] max-w-[95vw] bg-off-white brutalist-border brutalist-shadow md:aspect-[1.6/1] flex flex-col md:flex-row overflow-hidden max-h-[90vh] md:max-h-[85vh]"
       initial={{ scale: 0.8, opacity: 0, rotate: -2, x: "-50%", y: "-50%" }}
       animate={{ scale: 1, opacity: 1, rotate: 0, x: "-50%", y: "-50%" }}
       exit={{ scale: 0.8, opacity: 0, x: "-50%", y: "-50%" }}
@@ -190,7 +190,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
       </button>
 
       {/* Left Column: Image */}
-      <div className="hidden md:flex w-full md:w-5/12 bg-tet-green-light border-b-2 md:border-b-0 md:border-r-2 border-charcoal p-4 flex-col relative justify-center items-center">
+      <div className="flex w-full md:w-5/12 bg-tet-green-light border-b-2 md:border-b-0 md:border-r-2 border-charcoal p-4 flex-col relative justify-center items-center h-full md:h-auto">
         <div className="absolute top-4 left-4 flex justify-between items-center font-mono text-xs text-charcoal/70 z-20">
           <span>✨ LÌ XÌ MAY MẮN ✨</span>
         </div>
@@ -203,7 +203,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
         <div className="absolute inset-6 border border-charcoal/20 pointer-events-none"></div>
 
         {/* Image Container: Stamp Poster Style */}
-        <div className="relative w-full h-[80%] bg-off-white border-4 border-charcoal p-3 -rotate-1 shadow-[5px_5px_0px_0px_rgba(31,31,31,1)] flex-shrink-0">
+        <div className="relative w-full h-[50%] md:h-[80%] bg-off-white border-4 border-charcoal p-3 -rotate-1 shadow-[5px_5px_0px_0px_rgba(31,31,31,1)] flex-shrink-0">
            {/* Inner Frame */}
            <div className="w-full h-full overflow-hidden bg-off-white relative group border-2 border-charcoal">
              {displayImage && <img src={displayImage} alt="Outcome" className="w-full h-full object-cover" />}
@@ -211,11 +211,11 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
 
              {/* Text Overlay inside image */}
              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-charcoal/95 via-charcoal/70 to-transparent p-5 pt-16 flex flex-col gap-1.5 z-20">
-                <div className="font-mono text-[9px] uppercase tracking-widest text-off-white/80">
+                <div className="font-mono text-[8px] md:text-[9px] uppercase tracking-widest text-off-white/80">
                     {language === 'vi' ? 'Lì xì (Tiền):' : 'Lucky Money (VND):'}
                 </div>
                 {displayMoney && (
-                   <div className="font-sans font-black text-4xl md:text-5xl text-tet-gold leading-[0.9] tracking-tighter drop-shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
+                   <div className="font-sans font-black text-2xl md:text-5xl text-tet-gold leading-[0.9] tracking-tighter drop-shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
                       {displayMoney}
                    </div>
                 )}
@@ -235,9 +235,9 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
       </div>
 
       {/* Right Column: Text & Context */}
-      <div className="w-full md:w-7/12 flex flex-col relative bg-off-white h-full overflow-hidden">
+      <div className="w-full md:w-7/12 flex flex-col relative bg-off-white h-auto md:h-full overflow-hidden">
         <div className="flex-shrink-0 px-6 pt-8 pb-2 md:px-8 md:pt-8 bg-off-white z-10">
-            <h2 className="font-sans font-black text-2xl md:text-3xl uppercase leading-none text-charcoal">
+            <h2 className="font-sans font-black text-xl md:text-3xl uppercase leading-none text-charcoal">
               {content?.benediction_title || 'Chúc mừng'}
             </h2>
         </div>
@@ -249,7 +249,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
         >
            <div className="px-6 md:px-8 py-6 space-y-5 pb-8">
                 <div>
-                  <p className="font-serif italic text-3xl md:text-4xl text-tet-red leading-tight font-bold">
+                  <p className="font-serif italic text-lg md:text-4xl text-tet-red leading-tight font-bold">
                     "{content?.benediction_text || 'Chúc bạn may mắn!'}"
                   </p>
                   <div className="w-16 h-2 bg-tet-gold mt-4"></div>
