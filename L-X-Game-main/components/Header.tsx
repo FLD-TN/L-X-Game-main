@@ -7,10 +7,9 @@ interface HeaderProps {
   openedCount: number;
   total: number;
   language: Language;
-  setLanguage: (lang: Language) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ openedCount, total, language, setLanguage }) => {
+export const Header: React.FC<HeaderProps> = ({ openedCount, total, language }) => {
   const percentage = Math.round((openedCount / total) * 100);
   const [milestoneMsg, setMilestoneMsg] = useState<string | null>(null);
   const prevPercentageRef = useRef(percentage);
@@ -67,21 +66,14 @@ export const Header: React.FC<HeaderProps> = ({ openedCount, total, language, se
         </div>
       </div>
 
-      {/* Top Right: Language Toggle Only */}
+      {/* Top Right: Circular Logo */}
       <div className="absolute top-4 right-4 md:top-10 md:right-8 pointer-events-auto">
-        <div className="flex gap-2">
-          <button 
-            onClick={() => setLanguage('vi')}
-            className={`w-8 h-8 font-mono text-xs font-bold border-2 border-charcoal transition-all ${language === 'vi' ? 'bg-tet-red text-off-white' : 'bg-tet-gold text-charcoal opacity-50 hover:opacity-100 hover:-translate-y-1'}`}
-          >
-            VI
-          </button>
-          <button 
-            onClick={() => setLanguage('en')}
-            className={`w-8 h-8 font-mono text-xs font-bold border-2 border-charcoal transition-all ${language === 'en' ? 'bg-tet-red text-off-white' : 'bg-tet-gold text-charcoal opacity-50 hover:opacity-100 hover:-translate-y-1'}`}
-          >
-            EN
-          </button>
+        <div className="w-16 h-16 rounded-full border-3 border-charcoal bg-tet-gold p-1 shadow-lg overflow-hidden hover:scale-110 transition-transform">
+          <img 
+            src="/imgs/sticker.png" 
+            alt="Logo" 
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
       </div>
     </header>

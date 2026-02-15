@@ -5,28 +5,32 @@ import { ControlBar } from './components/ControlBar';
 import { Envelope } from './components/Envelope';
 import { OutcomeCard } from './components/OutcomeCard';
 import { WelcomeScreen } from './components/WelcomeScreen';
-import { ENVELOPES, MONEY_DENOMINATIONS } from './constants'; // Import MONEY_DENOMINATIONS
+import { FallingFlowers } from './components/FallingFlowers';
+import { ENVELOPES } from './constants';
 import { Language, EnvelopeData } from './types';
 import confetti from 'canvas-confetti';
 
-// Hàm xáo trộn tiền (Fisher-Yates Shuffle)
+// Hàm xáo trộn tiền theo số lượng cố định
 const shuffleEnvelopes = (): EnvelopeData[] => {
-  // 1. Tạo một bể tiền (pool) đảm bảo mỗi mệnh giá xuất hiện đều nhau
-  // Có 16 bao, 4 mệnh giá => mỗi mệnh giá xuất hiện 4 lần
-  let moneyPool: number[] = [];
-  const repeatCount = 16 / MONEY_DENOMINATIONS.length;
-  
-  for (let i = 0; i < repeatCount; i++) {
-    moneyPool = [...moneyPool, ...MONEY_DENOMINATIONS];
-  }
+  const moneyDistribution = [
+    { value: 100000, count: 2 },  // 2 tờ 100k
+    { value: 50000, count: 3 },   // 3 tờ 50k
+    { value: 10000, count: 4 },   // 4 tờ 10k
+    { value: 20000, count: 7 },   // 7 tờ 20k
+  ];
 
-  // 2. Xáo trộn bể tiền
+  let moneyPool: number[] = [];
+  moneyDistribution.forEach(item => {
+    for (let i = 0; i < item.count; i++) {
+      moneyPool.push(item.value);
+    }
+  });
+
   for (let i = moneyPool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [moneyPool[i], moneyPool[j]] = [moneyPool[j], moneyPool[i]];
   }
 
-  // 3. Gán tiền đã xáo trộn vào danh sách bao lì xì gốc (giữ nguyên vị trí ID và tọa độ)
   return ENVELOPES.map((env, index) => ({
     ...env,
     money: moneyPool[index]
@@ -35,17 +39,19 @@ const shuffleEnvelopes = (): EnvelopeData[] => {
 
 const App: React.FC = () => {
   const [hasStarted, setHasStarted] = useState(false);
-  // Thay vì dùng ENVELOPES tĩnh, ta dùng state để lưu danh sách đã random
   const [gameEnvelopes, setGameEnvelopes] = useState<EnvelopeData[]>([]); 
   const [openedIds, setOpenedIds] = useState<number[]>([]);
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  
+  // STATE MỚI: isProcessing để khóa nút bấm khi đang có hiệu ứng
+  const [isProcessing, setIsProcessing] = useState(false);
+  
   const [muted, setMuted] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [language, setLanguage] = useState<Language>('vi');
   
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Khởi tạo game: Random tiền ngay khi load trang
   useEffect(() => {
     setGameEnvelopes(shuffleEnvelopes());
   }, []);
@@ -69,8 +75,23 @@ const App: React.FC = () => {
     }
   }, [muted, volume, hasStarted]);
 
+  const triggerConfetti = () => {
+      const colors = ['#C84639', '#E6BC68', '#F5F2EB'];
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: colors,
+        disableForReducedMotion: true,
+        shapes: ['square', 'circle'],
+        scalar: 1.2,
+        zIndex: 60,
+      });
+  }
+
   const handleEnvelopeClick = (id: number) => {
-    if (openedIds.includes(id)) return;
+    // Chặn click nếu đang xử lý hoặc thẻ đó đã mở
+    if (isProcessing || openedIds.includes(id) || selectedId) return;
 
     const openSound = new Audio("/sounds/open.mp3");
     if (!muted) {
@@ -78,49 +99,62 @@ const App: React.FC = () => {
       openSound.play().catch(e => console.log(e));
     }
 
-    const colors = ['#C84639', '#E6BC68', '#F5F2EB'];
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: colors,
-      disableForReducedMotion: true,
-      shapes: ['square', 'circle'],
-      scalar: 1.2,
-      zIndex: 60,
-    });
-
+    triggerConfetti();
     setSelectedId(id);
     setOpenedIds(prev => [...prev, id]);
   };
 
   const handleRandom = () => {
-    // Tìm trong gameEnvelopes hiện tại
+    // LOGIC CHẶN SPAM:
+    // 1. Nếu đang xử lý (isProcessing = true) -> Chặn
+    // 2. Nếu đang có thẻ mở (selectedId != null) -> Chặn
+    if (isProcessing || selectedId) return;
+
     const availableIds = gameEnvelopes
       .map(e => e.id)
       .filter(id => !openedIds.includes(id));
 
     if (availableIds.length > 0) {
+      // BẮT ĐẦU KHÓA
+      setIsProcessing(true);
+
       const randomId = availableIds[Math.floor(Math.random() * availableIds.length)];
-      handleEnvelopeClick(randomId);
+      
+      const openSound = new Audio("/sounds/open.mp3");
+      if (!muted) {
+        openSound.volume = 0.6;
+        openSound.play().catch(e => console.log(e));
+      }
+
+      triggerConfetti();
+      
+      setOpenedIds(prev => [...prev, randomId]);
+      setSelectedId(randomId);
+
+      // MỞ KHÓA SAU 2.2 GIÂY (Khớp với thời gian animation xoay thẻ trong OutcomeCard)
+      setTimeout(() => {
+        setIsProcessing(false);
+      }, 2200);
     }
   };
 
   const handleCloseCard = () => {
     setSelectedId(null);
+    // Đảm bảo reset trạng thái xử lý khi đóng card
+    setIsProcessing(false);
   };
 
   const handleReset = () => {
+    // Cũng chặn reset nếu đang quay random dở
+    if (isProcessing) return;
+
     setOpenedIds([]);
     setSelectedId(null);
-    // RANDOM LẠI TIỀN KHI RESET
-    // Thêm delay nhỏ để user không thấy tiền bị đổi đột ngột trước khi đóng hết animation
     setTimeout(() => {
       setGameEnvelopes(shuffleEnvelopes());
     }, 300);
   };
 
-  // Lấy giá trị tiền của bao đang chọn để truyền vào OutcomeCard
   const selectedEnvelopeMoney = selectedId 
     ? gameEnvelopes.find(e => e.id === selectedId)?.money || 0 
     : 0;
@@ -146,28 +180,45 @@ const App: React.FC = () => {
         )}
       </AnimatePresence>
 
+      <FallingFlowers />
+
       <div className={`absolute inset-0 flex flex-col transition-opacity duration-1000 ${hasStarted ? 'opacity-100' : 'opacity-0'}`}>
           
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-br from-tet-gold/30 via-tet-red/20 to-tet-green/30" />
-            <div className="absolute left-[-50px] top-[-50px] w-64 h-64 opacity-40">
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <circle cx="100" cy="100" r="80" fill="#FF69B4" opacity="0.3"/>
-                <circle cx="60" cy="60" r="20" fill="#FFB6D9"/>
-                <circle cx="140" cy="60" r="20" fill="#FFB6D9"/>
-                <circle cx="100" cy="100" r="25" fill="#FFC0CB"/>
-              </svg>
-            </div>
-            <div className="absolute right-[-50px] bottom-[-50px] w-64 h-64 opacity-40">
-              <svg viewBox="0 0 200 200" className="w-full h-full">
-                <circle cx="100" cy="100" r="80" fill="#FFD700" opacity="0.3"/>
-                <circle cx="60" cy="60" r="20" fill="#FFED4E"/>
-                <circle cx="140" cy="60" r="20" fill="#FFED4E"/>
-                <circle cx="100" cy="100" r="25" fill="#FFE135"/>
-              </svg>
-            </div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.3)_120%)] z-20" />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-black/5 z-20" />
+            
+            {/* ... (Giữ nguyên các phần trang trí background motion.div) ... */}
+            <motion.div 
+              className="absolute top-15 left-4 md:top-20 md:left-12 w-32 h-32 md:w-48 md:h-48 opacity-100 pointer-events-none"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src="/imgs/hoadao_trai.png" alt="Hoa Đào" className="w-full h-full object-contain drop-shadow-lg" />
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-8 right-4 md:bottom-16 md:right-12 w-32 h-32 md:w-48 md:h-48 opacity-100 pointer-events-none"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            >
+              <img src="/imgs/hoamai.png" alt="Hoa Mai" className="w-full h-full object-contain drop-shadow-lg" />
+            </motion.div>
+            <motion.div 
+              className="absolute top-1/4 right-2 md:right-8 w-24 h-24 md:w-36 md:h-36 opacity-100 pointer-events-none"
+              animate={{ rotate: [0, 5, -5, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <img src="/imgs/hoadao.png" alt="Hoa Đào" className="w-full h-full object-contain drop-shadow-md" />
+            </motion.div>
+            <motion.div 
+              className="absolute bottom-1/4 left-2 md:left-8 w-24 h-24 md:w-36 md:h-36 opacity-200 pointer-events-none"
+              animate={{ rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+            >
+              <img src="/imgs/hoamai_trai.png" alt="Hoa Mai" className="w-full h-full object-contain drop-shadow-md" />
+            </motion.div>
+             {/* ... (Kết thúc phần trang trí) ... */}
+
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.1)_120%)] z-20" />
           </div>
 
           <div className="absolute inset-2 md:inset-6 z-0 rounded-[2rem] md:rounded-[3rem] border-2 border-tet-red/40 shadow-2xl pointer-events-none overflow-hidden">
@@ -181,20 +232,19 @@ const App: React.FC = () => {
               openedCount={openedIds.length} 
               total={ENVELOPES.length} 
               language={language}
-              setLanguage={setLanguage}
             />
           </div>
 
           <main className="relative z-10 flex-1 min-h-0 w-full flex items-center justify-center p-2 md:p-4">
             <div className="relative w-full h-full max-w-[1000px] max-h-[80vh] grid grid-cols-4 grid-rows-4 gap-2 md:gap-4 lg:gap-6">
-                {/* Render từ gameEnvelopes (State) thay vì ENVELOPES (Constant) */}
                 {gameEnvelopes.map((env) => (
                    <div key={env.id} className="w-full h-full flex items-center justify-center pointer-events-auto">
                       <div className={`w-full max-w-[4.5rem] md:max-w-[7rem] aspect-[3/4] transition-opacity duration-300 ${selectedId === env.id ? 'opacity-0' : 'opacity-100'}`}>
                         <Envelope 
                           data={env} 
-                          onClick={handleEnvelopeClick}
-                          disabled={!!selectedId} 
+                          // Truyền thêm điều kiện disabled khi đang xử lý
+                          onClick={() => handleEnvelopeClick(env.id)}
+                          disabled={!!selectedId || isProcessing} 
                           isOpened={openedIds.includes(env.id)} 
                         />
                       </div>
@@ -214,18 +264,21 @@ const App: React.FC = () => {
                    onClick={handleCloseCard}
                  />
                  <OutcomeCard 
+                    key={selectedId} 
                     onClose={handleCloseCard} 
                     cardId={selectedId}
                     language={language}
-                    moneyAmount={selectedEnvelopeMoney} // Truyền số tiền đã random vào đây
+                    moneyAmount={selectedEnvelopeMoney}
                  />
               </>
             )}
           </AnimatePresence>
 
+          {/* Truyền prop disabled xuống ControlBar */}
           <ControlBar 
             muted={muted} 
             volume={volume}
+            disabled={isProcessing || !!selectedId} // Vô hiệu hóa khi đang xử lý HOẶC đang mở thẻ
             onToggleMute={() => setMuted(!muted)} 
             onVolumeChange={(v) => setVolume(v)}
             onReset={handleReset} 

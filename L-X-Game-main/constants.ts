@@ -1,8 +1,8 @@
-
 import { EnvelopeData, CardData } from './types';
 
 // Money denominations for Tết lucky money
-export const MONEY_DENOMINATIONS = [100000, 200000, 500000, 1000000];
+// Cập nhật mệnh giá mới: 10k, 20k, 50k, 100k
+export const MONEY_DENOMINATIONS = [10000, 20000, 50000, 100000];
 
 // Generate 16 envelopes with deterministic "random" values for the visual scatter
 export const ENVELOPES: EnvelopeData[] = Array.from({ length: 16 }).map((_, i) => ({
@@ -20,7 +20,7 @@ const RAW_CARDS: CardData[] = [
     id: 1,
     vi: {
       benediction_title: "Chúc mừng năm mới",
-      benediction_text: "Năm mới - chúc bạn được bao quanh bởi tình yêu, tin tưởng và những tia sáng hy vọng. Mỗi ngày là một cơ hội mới để trở thành phiên bản tốt nhất của chính mình.",
+      benediction_text: "Chúc bạn năm mới vạn sự như ý, triệu sự như mơ, trăm sự bất ngờ, hàng giờ hạnh phúc.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -38,13 +38,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "qG1BaZ39qhk",
       title: "Em đừng đi"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy85-2c37de6d-f2e1-4b2b-bf68-ae0c15d64961.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank4NS0yYzM3ZGU2ZC1mMmUxLTRiMmItYmY2OC1hZTBjMTVkNjQ5NjEucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.4lWB1K64YvNKPzbnh6J2XowDscHsj6H2DKBUnpo9uRk"
+    image: "/imgs/anh1.jpg"
   },
   {
     id: 2,
     vi: {
       benediction_title: "Chúc sức khoẻ",
-      benediction_text: "Sức khỏe là vàng, tài năng là bạc. Chúc bạn sắc sảo tinh anh, luôn khỏe mạnh và năng động để vượt qua mọi thử thách.",
+      benediction_text: "Chúc bạn năm mới an khang, tâm sáng – trí vững – đường dài thênh thang, việc gì cũng hanh thông.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -62,13 +62,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "P2nnRDpucs8",
       title: "Chúng ta của hiện tại"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjybn-5d880ef2-0616-4f15-984d-59e8ccbf717a.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnanlibi01ZDg4MGVmMi0wNjE2LTRmMTUtOTg0ZC01OWU4Y2NiZjcxN2EucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.kNxsSkkbP_7kiqQJeFHvFvkDvhcGS1ru5B8KNjlBdf0"
+    image: "/imgs/anh2.jpg"
   },
   {
     id: 3,
     vi: {
       benediction_title: "Chúc thành công",
-      benediction_text: "Chúc bạn năm này thành công rực rỡ, sự nghiệp bứt phá, công việc suôn sẻ, tiền bạc dồi dào và mọi ước mơ đều thành hiện thực.",
+      benediction_text: "Năm mới chúc bạn và gia đình luôn bình an, nhà cửa ấm êm, tài lộc gõ cửa mỗi ngày.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -86,13 +86,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "uR9ZwejfuR8",
       title: "Chúng ta không thuộc về nhau"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy6y-684a18eb-2d10-4b25-b759-2db4b5588a09.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank2eS02ODRhMThlYi0yZDEwLTRiMjUtYjc1OS0yZGI0YjU1ODhhMDkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.RndJk1ucfo8NZfyExVgdRlEeJMj8ClN2SWZx73DNTtw"
+    image: "/imgs/anh3.jpg"
   },
   {
     id: 4,
     vi: {
       benediction_title: "Chúc hạnh phúc",
-      benediction_text: "Chúc bạn và những người thân yêu được bao quanh bởi niềm vui, tình thân ấm áp, cười tươi mỗi ngày và những khoảnh khắc đẹp không quên.",
+      benediction_text: "Chúc bạn một năm đủ sức khỏe để sống trọn, đủ bình an để an lòng và đủ thành công để tự hào.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -110,13 +110,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "uw11eF7Lehc",
       title: "Có chắc yêu là đây"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgkka0-e76a3db4-2912-45af-9a3f-1c8c0e8950cf.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxna2thMC1lNzZhM2RiNC0yOTEyLTQ1YWYtOWEzZi0xYzhjMGU4OTUwY2YucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.f0pKPjBRTZESwMXs2ePmetZOXdSTTmREe5jJ3a-6INY"
+    image: "/imgs/anh4.jpg"
   },
   {
     id: 5,
     vi: {
       benediction_title: "Chúc tình yêu",
-      benediction_text: "Chúc những trái tim cô đơn sớm tìm được người khác nửa, chúc những cặp đôi ngọt ngào hơn, chúc tình yêu luôn nở rộ như hoa cỏ may.",
+      benediction_text: "Mong năm mới mang đến nhiều cơ hội mới, quyết định đúng đắn và những bước tiến vững vàng.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -134,13 +134,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "zpwwM_HTkok",
       title: "Em của ngày hôm qua"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy7c-82934753-35d5-4151-8876-ae6761e225cf.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank3Yy04MjkzNDc1My0zNWQ1LTQxNTEtODg3Ni1hZTY3NjFlMjI1Y2YucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.GEuvdUV9JNmqcCQBJo3pfy12W_SnspZTF-fkKUtuP9I"
+    image: "/imgs/anh5.jpg"
   },
   {
     id: 6,
     vi: {
       benediction_title: "Chúc may mắn",
-      benediction_text: "Chúc bạn năm này vận may bên mình, mọi việc gặp hên, mọi lần cá cược đều thắng, và những may mắn tốt sẽ ùa về không ngừng.",
+      benediction_text: "Chúc mọi dự định ấp ủ của bạn đều nảy mầm, mọi cố gắng đều được đền đáp xứng đáng.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -158,13 +158,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "fMnpiBpmXY4",
       title: "Chắc ai đó sẽ về"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy8t-598cbac5-66e4-49fd-a90a-aaa3da43229d.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank4dC01OThjYmFjNS02NmU0LTQ5ZmQtYTkwYS1hYWEzZGE0MzIyOWQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.g_wfZhkLtlzuIca4HQiLyQsLqV0L57FePQCUkfQEBWs"
+    image: "/imgs/anh6.jpg"
   },
   {
     id: 7,
     vi: {
       benediction_title: "Chúc gia đình",
-      benediction_text: "Chúc gia đình bạn luôn sum vầy, cha mẹ khỏe mạnh, con em thành đạt, và tình thương gia đình như mật ngọt trên lưỡi.",
+      benediction_text: "Năm mới vạn sự như ý, tâm thế an nhiên, sự nghiệp thăng hoa, gia đạo thuận hòa.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -182,13 +182,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "LPK6YM05wYQ",
       title: "Nắng ấm xa dần"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy7r-e48dfcc5-c18b-4729-9c69-7334879e3795.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank3ci1lNDhkZmNjNS1jMThiLTQ3MjktOWM2OS03MzM0ODc5ZTM3OTUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.aVM6myho7DIUeNA_HTy6JQuQfDGZkyz3COkYONsmw9A"
+    image: "/imgs/anh7.jpg"
   },
   {
     id: 8,
     vi: {
       benediction_title: "Chúc bình an",
-      benediction_text: "Chúc bạn năm này bình an, yên ổn, thoát khỏi những rắc rối, ưu phiền, và mỗi ngày đều là một ngày tươi sáng.",
+      benediction_text: "Chúc bạn mỗi ngày trong năm đều có niềm vui nhỏ, may mắn lớn và những người tử tế bên cạnh.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -206,13 +206,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "eeGQgT0voSM",
       title: "Cơn mưa ngang qua"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy92-7b47eb76-1352-4259-8f53-a5544fa7977f.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank5Mi03YjQ3ZWI3Ni0xMzUyLTQyNTktOGY1My1hNTU0NGZhNzk3N2YucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.rBPeFt6bUyCriNYHDXY3CUtvbIwyzka6eKuxO6sH-84"
+    image: "/imgs/anh8.jpg"
   },
   {
     id: 9,
     vi: {
       benediction_title: "Chúc khôn ngoan",
-      benediction_text: "Chúc bạn sáng suốt, có tầm nhìn dài hạn, đưa ra những quyết định đúng đắn, và luôn biết cách sống thông thái.",
+      benediction_text: "Mong năm mới nhẹ lòng với chuyện cũ, mạnh mẽ cho chặng đường mới và rực rỡ theo cách riêng của bạn.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -230,13 +230,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "ISz-RZXZaLE",
       title: "Đừng về trễ"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy9l-30c2f18a-b130-4d7b-9c2d-a63335b5bf6b.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank5bC0zMGMyZjE4YS1iMTMwLTRkN2ItOWMyZC1hNjMzMzViNWJmNmIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.KfOTtn7gXPw9luEO9YYEi6Hkm6z2aiCCBJHDUt_5af8"
+    image: "/imgs/anh9.jpg"
   },
   {
     id: 10,
     vi: {
       benediction_title: "Chúc tự tin",
-      benediction_text: "Chúc bạn tự tin, dũng cảm, không sợ hãi trước những thử thách, và luôn giữ đầu cao đi về phía trước.",
+      benediction_text: "Chúc bạn khởi đầu thuận lợi, giữa năm rực rỡ, cuối năm viên mãn.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -254,13 +254,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "rsMVFeFUwz4",
       title: "Em Đã Đến Lúc Thức Tỉnh"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy9h-19d940fa-909b-44c2-ac9e-4e77596bc762.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnank5aC0xOWQ5NDBmYS05MDliLTQ0YzItYWM5ZS00ZTc3NTk2YmM3NjIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.GoEBbgys2sAnUDRkOVMzja5NAlTJTUNhFMLX9Ch1w3w"
+    image: "/imgs/anh10.jpg"
   },
   {
     id: 11,
     vi: {
       benediction_title: "Chúc sáng tạo",
-      benediction_text: "Chúc bạn lúc nào cũng sáng tạo, có những ý tưởng mới mẻ, tài năng được phát huy, và công trình của bạn nổi bật.",
+      benediction_text: "Năm mới kính chúc sức khỏe dồi dào, tinh thần vững vàng, tiền vào như nước và cuộc sống ngày càng thăng hoa.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -278,13 +278,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "oIFqYDvSEj8",
       title: "Cơn mưa ngang qua 3"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjya0-0b92096c-d817-4bdc-b0c8-a61dcacf6442.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnanlhMC0wYjkyMDk2Yy1kODE3LTRiZGMtYjBjOC1hNjFkY2FjZjY0NDIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.U20mIiOT9VLPSisrFyYCgEUMP952ah8DqJyY5JGATEQ"
+    image: "/imgs/anh11.png"
   },
   {
     id: 12,
     vi: {
       benediction_title: "Chúc tình bạn",
-      benediction_text: "Chúc bạn có những người bạn thật, bạn tốt, sẵn sàng đứng cạnh và giúp đỡ khi bạn cần nhất.",
+      benediction_text: "Chúc bạn sung túc đủ đầy, tiền vào như nước, lộc đến đầy tay, vận may gõ cửa.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -302,13 +302,13 @@ const RAW_CARDS: CardData[] = [
       video_id: "wHS-TgMn_-E",
       title: "Một cộng một lớn hơn hai"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjy6o-fc3d7531-e34c-41b2-a984-e01cfefeae59.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxgank2by1mYzNkNzUzMS1lMzRjLTQxYjItYTk4NC1lMDFjZmVmZWFlNTkucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.Mo4EQQ4_Ivcl6isjh9HPunGUlfhKdgcTvsNo71GemGQ"
+    image: "/imgs/anh12.jpg"
   },
   {
     id: 13,
     vi: {
       benediction_title: "Chúc cân bằng",
-      benediction_text: "Chúc bạn cân bằng giữa công việc và cuộc sống, giữa hai tay và tâm hồn, và mỗi ngày tươi tắn.",
+      benediction_text: "Chúc bạn nhan sắc thăng hạng, sự nghiệp thăng tiến, tình yêu thăng hoa. Cả năm đều tiến.",
       context_title: "",
       context_quote: "",
       value: "",
@@ -326,7 +326,7 @@ const RAW_CARDS: CardData[] = [
       video_id: "uw11eF7Lehc",
       title: "Có chắc yêu là đây"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjyau-80ac2388-dcaa-481b-a570-2bc1d3716566.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxganlyYXUtODBhYzIzODgtZGNhYS00ODFiLWE1NzAtMmJjMWQzNzE2NTY2LnBuZyJ9XSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.UJECkL0y1THt4oLSN7TpipKOB4YovwzF-C4ie4EfDZc"
+    image: "/imgs/anh13.jpg"
   },
   {
     id: 14,
@@ -350,7 +350,7 @@ const RAW_CARDS: CardData[] = [
       video_id: "LPK6YM05wYQ",
       title: "Nắng ấm xa dần"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjyb2-c5600d9c-9915-472b-894a-d3eebf82082b.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnanliMi1jNTYwMGQ5Yy05OTE1LTQ3MmItODk0YS1kM2VlYmY4MjA4MmIucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.te7MOuADIm8QnXQ1YJS1DKZnX9x7JtIybBBK136KsqY"
+    image: "/imgs/anh14.jpg"
   },
   {
     id: 15,
@@ -374,7 +374,7 @@ const RAW_CARDS: CardData[] = [
       video_id: "eeGQgT0voSM",
       title: "Cơn mưa ngang qua"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjybc-d79fc2da-5a7a-4d5c-86f3-155a21537e58.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxnanliYy1kNzlmYzJkYS01YTdhLTRkNWMtODZmMy0xNTVhMjE1MzdlNTgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.AFRzIJR5YDUpl03mqIa5mALs5PeBIN9l7J1q5jFrOjA"
+    image: "/imgs/anh15.jpg"
   },
   {
     id: 16,
@@ -398,7 +398,7 @@ const RAW_CARDS: CardData[] = [
       video_id: "uR9ZwejfuR8",
       title: "Chúng ta không thuộc về nhau"
     },
-    image: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/414a2959-3b7a-4942-b22c-0fdb42d1abb6/dlgjyaf-9d8d4937-6b19-4e81-a7f8-f19adadf736c.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi80MTRhMjk1OS0zYjdhLTQ5NDItYjIyYy0wZmRiNDJkMWFiYjYvZGxganlhZi05ZDhkNDkzNy02YjE5LTRlODEtYTdmOC1mMTlhZGFkZjczNmMucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.sVsGpbQG2wzKmofB_18Nb1JlBx4xL5Z6PkXykDUdk8g"
+    image: "/imgs/anh16.jpg"
   }
 ];
 // Replicate and cycle the cards to fill all 16 slots deterministically
@@ -409,3 +409,41 @@ export const CARDS_DB: CardData[] = Array.from({ length: 16 }).map((_, i) => {
     id: i + 1
   };
 });
+
+// List of available images from imgs folder (16 images)
+export const AVAILABLE_IMAGES = [
+  '/imgs/anh1.jpg',
+  '/imgs/anh2.jpg',
+  '/imgs/anh3.jpg',
+  '/imgs/anh4.jpg',
+  '/imgs/anh5.jpg',
+  '/imgs/anh6.jpg',
+  '/imgs/anh7.jpg',
+  '/imgs/anh8.jpg',
+  '/imgs/anh9.jpg',
+  '/imgs/anh10.jpg',
+  '/imgs/anh11.png',
+  '/imgs/anh12.jpg',
+  '/imgs/anh13.jpg',
+  '/imgs/anh14.jpg',
+  '/imgs/anh15.jpg',
+  '/imgs/anh16.jpg',
+];
+
+// Function to generate random lucky money content
+export const generateRandomLuckyMoney = () => {
+  // Random card (blessing)
+  const randomCard = RAW_CARDS[Math.floor(Math.random() * RAW_CARDS.length)];
+  
+  // Random image
+  const randomImage = AVAILABLE_IMAGES[Math.floor(Math.random() * AVAILABLE_IMAGES.length)];
+  
+  // Random money denomination
+  const randomMoney = MONEY_DENOMINATIONS[Math.floor(Math.random() * MONEY_DENOMINATIONS.length)];
+  
+  return {
+    card: randomCard,
+    image: randomImage,
+    money: randomMoney
+  };
+};

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CARDS_DB } from '../constants'; // Bỏ import ENVELOPES
+import { generateRandomLuckyMoney } from '../constants';
 import { X, ChevronDown } from 'lucide-react';
 import { Language } from '../types';
 
@@ -8,24 +8,38 @@ interface OutcomeCardProps {
   onClose: () => void;
   cardId: number;
   language: Language;
-  moneyAmount: number; // Thêm prop này để nhận tiền động
+  moneyAmount: number;
+}
+
+interface RandomLuckyMoneyData {
+  card: any;
+  image: string;
+  money: number; // Cái này sẽ dùng nội bộ hoặc ignore, ta ưu tiên props moneyAmount
 }
 
 export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, language, moneyAmount }) => {
   const [copied, setCopied] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [animationPhase, setAnimationPhase] = useState<'spinning' | 'card'>('spinning');
+  const [randomData, setRandomData] = useState<RandomLuckyMoneyData | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Retrieve card data based on ID
-  const cardData = CARDS_DB.find(c => c.id === cardId) || CARDS_DB[0];
-  const content = cardData[language];
-  const video = cardData.youtube;
+  // Generate random data (content & image) when component mounts
+  // Nhờ key={cardId} bên App.tsx, effect này sẽ luôn chạy lại khi đổi card
+  useEffect(() => {
+    setRandomData(generateRandomLuckyMoney());
+  }, []);
 
-  // Sử dụng moneyAmount được truyền vào thay vì tìm trong constants
-  const displayMoney = moneyAmount > 0 ? `${(moneyAmount / 1000).toFixed(0)}K VND` : '';
-
-  const displayImage = cardData.image;
+  // Get content from random data
+  const cardData = randomData?.card;
+  const content = cardData ? cardData[language] : null;
+  const video = cardData?.youtube;
+  const displayImage = randomData?.image;
+  
+  // SỬA: Ưu tiên dùng moneyAmount từ props (để khớp với logic game)
+  // Nếu props = 0 (trường hợp lỗi) thì mới fallback về randomData
+  const finalMoney = moneyAmount > 0 ? moneyAmount : (randomData?.money || 0);
+  const displayMoney = finalMoney > 0 ? `${(finalMoney / 1000).toFixed(0)}K VND` : '';
 
   useEffect(() => {
     const checkScroll = () => {
@@ -48,7 +62,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
       clearTimeout(spinTimer);
       window.removeEventListener('resize', checkScroll);
     };
-  }, [cardId, language]); 
+  }, [randomData, language]); 
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -63,6 +77,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
   };
 
   const handleShare = async () => {
+    if (!video || !content) return;
     const url = `https://www.youtube.com/watch?v=${video.video_id}`;
     
     if (navigator.share) {
@@ -82,8 +97,8 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
     }
   };
 
-  // If still spinning, show envelope animation instead of card
-  if (animationPhase === 'spinning') {
+  // If still spinning or no random data, show envelope animation
+  if (animationPhase === 'spinning' || !randomData) {
     return (
       <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
         <motion.div
@@ -177,7 +192,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
       {/* Left Column: Image */}
       <div className="hidden md:flex w-full md:w-5/12 bg-tet-green-light border-b-2 md:border-b-0 md:border-r-2 border-charcoal p-4 flex-col relative justify-center items-center">
         <div className="absolute top-4 left-4 flex justify-between items-center font-mono text-xs text-charcoal/70 z-20">
-          <span>CARD #{cardId.toString().padStart(2, '0')}</span>
+          <span>✨ LÌ XÌ MAY MẮN ✨</span>
         </div>
         
         {/* Decorative Elements */}
@@ -191,7 +206,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
         <div className="relative w-full h-[80%] bg-off-white border-4 border-charcoal p-3 -rotate-1 shadow-[5px_5px_0px_0px_rgba(31,31,31,1)] flex-shrink-0">
            {/* Inner Frame */}
            <div className="w-full h-full overflow-hidden bg-off-white relative group border-2 border-charcoal">
-             <img src={displayImage} alt="Outcome" className="w-full h-full object-cover" />
+             {displayImage && <img src={displayImage} alt="Outcome" className="w-full h-full object-cover" />}
              <div className="absolute inset-0 bg-noise opacity-[0.15] mix-blend-multiply pointer-events-none z-10" />
 
              {/* Text Overlay inside image */}
@@ -223,7 +238,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
       <div className="w-full md:w-7/12 flex flex-col relative bg-off-white h-full overflow-hidden">
         <div className="flex-shrink-0 px-6 pt-8 pb-2 md:px-8 md:pt-8 bg-off-white z-10">
             <h2 className="font-sans font-black text-2xl md:text-3xl uppercase leading-none text-charcoal">
-              {content.benediction_title}
+              {content?.benediction_title || 'Chúc mừng'}
             </h2>
         </div>
 
@@ -235,7 +250,7 @@ export const OutcomeCard: React.FC<OutcomeCardProps> = ({ onClose, cardId, langu
            <div className="px-6 md:px-8 py-6 space-y-5 pb-8">
                 <div>
                   <p className="font-serif italic text-3xl md:text-4xl text-tet-red leading-tight font-bold">
-                    "{content.benediction_text}"
+                    "{content?.benediction_text || 'Chúc bạn may mắn!'}"
                   </p>
                   <div className="w-16 h-2 bg-tet-gold mt-4"></div>
                 </div>

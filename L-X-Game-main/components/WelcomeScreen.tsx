@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FallingFlowers } from './FallingFlowers';
 
 interface WelcomeScreenProps {
   onStart: () => void;
@@ -8,6 +9,9 @@ interface WelcomeScreenProps {
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-tet-red-dark via-tet-red to-tet-gold-dark">
+      {/* Falling Flowers Effect */}
+      <FallingFlowers />
+      
       {/* Background patterns */}
       <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
       
@@ -15,7 +19,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-tet-gold rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-tet-red-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 
-      <div className="relative z-10 text-center p-6 max-w-md w-full">
+      <div className="relative z-50 text-center p-6 max-w-md w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

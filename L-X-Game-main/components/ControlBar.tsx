@@ -1,9 +1,10 @@
 import React from 'react';
-import { Music, Volume2, VolumeX, RotateCcw, Shuffle } from 'lucide-react';
+import { Volume2, VolumeX, RotateCcw, Shuffle } from 'lucide-react';
 
 interface ControlBarProps {
   muted: boolean;
   volume: number;
+  disabled?: boolean; // Thêm prop này
   onToggleMute: () => void;
   onVolumeChange: (vol: number) => void;
   onReset: () => void;
@@ -13,6 +14,7 @@ interface ControlBarProps {
 export const ControlBar: React.FC<ControlBarProps> = ({ 
   muted, 
   volume,
+  disabled = false,
   onToggleMute, 
   onVolumeChange, 
   onReset, 
@@ -23,6 +25,10 @@ export const ControlBar: React.FC<ControlBarProps> = ({
     const newVolume = parseFloat(e.target.value);
     onVolumeChange(newVolume);
   };
+
+  // Class chung cho các nút khi bị disabled
+  const buttonClass = (baseClass: string) => 
+    `${baseClass} ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`;
 
   return (
     <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-max max-w-[90vw]">
@@ -54,16 +60,18 @@ export const ControlBar: React.FC<ControlBarProps> = ({
         <div className="w-px h-6 bg-charcoal/20"></div>
         
         <button 
-          onClick={onReset}
-          className="p-2 hover:bg-charcoal/5 rounded-full transition-colors text-charcoal"
+          onClick={disabled ? undefined : onReset}
+          disabled={disabled}
+          className={buttonClass("p-2 hover:bg-charcoal/5 rounded-full transition-colors text-charcoal")}
           title="Reset"
         >
           <RotateCcw size={20} />
         </button>
 
         <button 
-          onClick={onRandom}
-          className="h-9 px-3 border-2 border-charcoal rounded-md font-mono text-xs font-bold uppercase hover:bg-charcoal hover:text-off-white transition-colors flex items-center gap-2"
+          onClick={disabled ? undefined : onRandom}
+          disabled={disabled}
+          className={buttonClass("h-9 px-3 border-2 border-charcoal rounded-md font-mono text-xs font-bold uppercase hover:bg-charcoal hover:text-off-white transition-colors flex items-center gap-2")}
         >
           <Shuffle size={14} />
           <span className="hidden md:inline">Random</span>
