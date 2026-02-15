@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LÌ XÌ GAME</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;0,900;1,400&family=Playfair+Display:ital,wght@0,600;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Be Vietnam Pro"', 'sans-serif'],
+              serif: ['"Playfair Display"', 'serif'],
+              mono: ['"Space Mono"', 'monospace'],
+            },
+            colors: {
+              'tet-red': '#DC143C',
+              'tet-red-dark': '#B22222',
+              'tet-red-light': '#FF6B6B',
+              'tet-gold': '#FFD700',
+              'tet-gold-dark': '#FFA500',
+              'tet-green': '#228B22',
+              'tet-green-light': '#90EE90',
+              'folk-red': '#DC143C',
+              'folk-red-dark': '#B22222',
+              'matcha': '#228B22',
+              'matcha-dark': '#1a6b1a',
+              'matcha-light': '#90EE90',
+              'off-white': '#F5F2EB',
+              'charcoal': '#1F1F1F',
+              'gold': '#FFD700',
+            },
+            backgroundImage: {
+              'noise': "url('https://grainy-gradients.vercel.app/noise.svg')",
+            },
+            animation: {
+              'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'bounce-gentle': 'bounce 2s infinite',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom Brutalist Utilities */
+      .brutalist-shadow {
+        box-shadow: 4px 4px 0px 0px #1F1F1F;
+      }
+      .brutalist-shadow-sm {
+        box-shadow: 2px 2px 0px 0px #1F1F1F;
+      }
+      .brutalist-border {
+        border: 2px solid #1F1F1F;
+      }
+      .text-shadow-sm {
+        text-shadow: 1px 1px 0px #1F1F1F;
+      }
+      
+      body {
+        background-color: transparent;
+        color: #1F1F1F;
+        overflow: hidden; /* Prevent scrolling for the game view */
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "framer-motion": "https://esm.sh/framer-motion@^12.34.0",
+    "canvas-confetti": "https://esm.sh/canvas-confetti@^1.9.4"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div> <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
