@@ -9,7 +9,7 @@ interface WelcomeScreenProps {
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-tet-red-dark via-tet-red to-tet-gold-dark">
-      {/* Falling Flowers Effect */}
+      {/* Hiệu ứng hoa rơi */}
       <FallingFlowers />
       
       {/* Background patterns */}
@@ -19,7 +19,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
       <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-tet-gold rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
       <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-tet-red-light rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
 
-      <div className="relative z-50 text-center p-6 max-w-md w-full">
+      <div className="relative z-50 text-center p-6 max-w-md w-full flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,16 +37,21 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
+          className="flex flex-col items-center gap-6" // Thêm gap và căn giữa
         >
           <button
             onClick={onStart}
             className="group relative px-8 py-4 bg-tet-gold text-tet-red-dark font-bold text-xl rounded-full shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:shadow-[0_0_50px_rgba(255,215,0,0.8)] transition-all duration-300 transform hover:scale-105"
           >
             <span className="relative z-10 flex items-center gap-2">
-              🧧 KHAI XUÂN NGAY
+              🧧 KHAI XUÂN 
             </span>
             <div className="absolute inset-0 rounded-full bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
           </button>
+
+          <p className="text-tet-gold font-mono text-[15px] md:text-xs tracking-[0.2em] uppercase opacity-100 drop-shadow-sm">
+            <span className="text-[15px]">©</span> 2026 [FLD-TN]. All rights reserved.
+          </p>
         </motion.div>
       </div>
     </div>

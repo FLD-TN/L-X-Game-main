@@ -1,8 +1,8 @@
 import { EnvelopeData, CardData } from './types';
 
 // Money denominations for Tết lucky money
-// Cập nhật mệnh giá mới: 10k, 20k, 50k, 100k
-export const MONEY_DENOMINATIONS = [10000, 20000, 50000, 100000];
+// Cập nhật mệnh giá mới: 20k, 50k, 100k (Đã bỏ 10k)
+export const MONEY_DENOMINATIONS = [20000, 50000, 100000];
 
 // Generate 16 envelopes with deterministic "random" values for the visual scatter
 export const ENVELOPES: EnvelopeData[] = Array.from({ length: 16 }).map((_, i) => ({

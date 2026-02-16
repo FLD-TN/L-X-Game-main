@@ -6,16 +6,17 @@ import { Envelope } from './components/Envelope';
 import { OutcomeCard } from './components/OutcomeCard';
 import { WelcomeScreen } from './components/WelcomeScreen';
 import { FallingFlowers } from './components/FallingFlowers';
-import { ENVELOPES } from './constants';
+import { ENVELOPES, MONEY_DENOMINATIONS } from './constants';
 import { Language, EnvelopeData } from './types';
 import confetti from 'canvas-confetti';
 
 // Hàm xáo trộn tiền theo số lượng cố định
 const shuffleEnvelopes = (): EnvelopeData[] => {
+  // Cấu hình số lượng các tờ tiền
+  // Tổng cộng: 3 + 6 + 7 = 16 tờ
   const moneyDistribution = [
-    { value: 100000, count: 2 },  // 2 tờ 100k
-    { value: 50000, count: 3 },   // 3 tờ 50k
-    { value: 10000, count: 4 },   // 4 tờ 10k
+    { value: 100000, count: 3 },  // 3 tờ 100k
+    { value: 50000, count: 6 },   // 6 tờ 50k
     { value: 20000, count: 7 },   // 7 tờ 20k
   ];
 
@@ -26,11 +27,13 @@ const shuffleEnvelopes = (): EnvelopeData[] => {
     }
   });
 
+  // Xáo trộn bể tiền (Fisher-Yates Shuffle)
   for (let i = moneyPool.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [moneyPool[i], moneyPool[j]] = [moneyPool[j], moneyPool[i]];
   }
 
+  // Gán tiền đã xáo trộn vào danh sách bao lì xì gốc
   return ENVELOPES.map((env, index) => ({
     ...env,
     money: moneyPool[index]
@@ -187,7 +190,7 @@ const App: React.FC = () => {
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
             <div className="absolute inset-0 bg-gradient-to-br from-tet-gold/30 via-tet-red/20 to-tet-green/30" />
             
-            {/* ... (Giữ nguyên các phần trang trí background motion.div) ... */}
+            {/* ... (Các phần trang trí background motion.div) ... */}
             <motion.div 
               className="absolute top-15 left-4 md:top-20 md:left-12 w-32 h-32 md:w-48 md:h-48 opacity-100 pointer-events-none"
               animate={{ y: [0, -10, 0] }}
