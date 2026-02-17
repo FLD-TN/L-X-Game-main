@@ -5,6 +5,8 @@ interface ControlBarProps {
   muted: boolean;
   volume: number;
   disabled?: boolean; // Thêm prop này
+  openedCount: number;
+  total: number;
   onToggleMute: () => void;
   onVolumeChange: (vol: number) => void;
   onReset: () => void;
@@ -15,6 +17,8 @@ export const ControlBar: React.FC<ControlBarProps> = ({
   muted, 
   volume,
   disabled = false,
+  openedCount,
+  total,
   onToggleMute, 
   onVolumeChange, 
   onReset, 
@@ -55,6 +59,12 @@ export const ControlBar: React.FC<ControlBarProps> = ({
               background: `linear-gradient(to right, #DC143C 0%, #DC143C ${volume * 100}%, rgba(31,31,31,0.2) ${volume * 100}%, rgba(31,31,31,0.2) 100%)`
             }}
           />
+        </div>
+
+        <div className="w-px h-6 bg-charcoal/20"></div>
+
+        <div className="px-2 py-1 bg-tet-red text-off-white border border-charcoal rounded font-mono text-xs font-bold">
+          {openedCount}/{total}
         </div>
 
         <div className="w-px h-6 bg-charcoal/20"></div>

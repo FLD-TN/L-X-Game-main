@@ -15,8 +15,8 @@ const shuffleEnvelopes = (): EnvelopeData[] => {
   // Cấu hình số lượng các tờ tiền
   // Tổng cộng: 3 + 6 + 7 = 16 tờ
   const moneyDistribution = [
-    { value: 100000, count: 3 },  // 3 tờ 100k
-    { value: 50000, count: 6 },   // 6 tờ 50k
+    { value: 10000, count: 3 },  // 3 tờ 10k
+    { value: 30000, count: 6 },   // 6 tờ 30k
     { value: 20000, count: 7 },   // 7 tờ 20k
   ];
 
@@ -282,6 +282,8 @@ const App: React.FC = () => {
             muted={muted} 
             volume={volume}
             disabled={isProcessing || !!selectedId} // Vô hiệu hóa khi đang xử lý HOẶC đang mở thẻ
+            openedCount={openedIds.length}
+            total={ENVELOPES.length}
             onToggleMute={() => setMuted(!muted)} 
             onVolumeChange={(v) => setVolume(v)}
             onReset={handleReset} 

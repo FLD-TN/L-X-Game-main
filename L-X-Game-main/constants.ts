@@ -1,8 +1,7 @@
 import { EnvelopeData, CardData } from './types';
 
 // Money denominations for Tết lucky money
-// Cập nhật mệnh giá mới: 20k, 50k, 100k (Đã bỏ 10k)
-export const MONEY_DENOMINATIONS = [20000, 50000, 100000];
+export const MONEY_DENOMINATIONS = [20000, 30000, 10000];
 
 // Generate 16 envelopes with deterministic "random" values for the visual scatter
 export const ENVELOPES: EnvelopeData[] = Array.from({ length: 16 }).map((_, i) => ({
@@ -278,7 +277,7 @@ const RAW_CARDS: CardData[] = [
       video_id: "oIFqYDvSEj8",
       title: "Cơn mưa ngang qua 3"
     },
-    image: "/imgs/anh11.png"
+    image: "/imgs/anh2.png"
   },
   {
     id: 12,
@@ -421,10 +420,6 @@ export const AVAILABLE_IMAGES = [
   '/imgs/anh7.jpg',
   '/imgs/anh8.jpg',
   '/imgs/anh9.jpg',
-  '/imgs/anh10.jpg',
-  '/imgs/anh11.png',
-  '/imgs/anh12.jpg',
-  '/imgs/anh13.jpg',
   '/imgs/anh14.jpg',
   '/imgs/anh15.jpg',
   '/imgs/anh16.jpg',

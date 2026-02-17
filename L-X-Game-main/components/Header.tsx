@@ -65,14 +65,6 @@ export const Header: React.FC<HeaderProps> = ({ openedCount, total, language }) 
           </span>
         </div>
       </div>
-
-      <div className ="absolute top-230 right -3 md:bottom-9 md:right-12 pointer-events-auto">
-          <p className="text-tet-gold font-mono text-[20px] md:text-xs tracking-[0.2em] uppercase opacity-100 drop-shadow-sm">
-            <span className="text-[20px]">©</span> 2026 [FLD-TN]. All rights reserved.
-          </p>
-
-      </div>
-
       {/* Top Right: Circular Logo */}
       <div className="absolute top-4 right-4 md:top-10 md:right-8 pointer-events-auto">
         <div className="w-16 h-16 rounded-full border-3 border-charcoal bg-tet-gold p-1 shadow-lg overflow-hidden hover:scale-110 transition-transform">
